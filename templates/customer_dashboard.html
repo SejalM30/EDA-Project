@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <title>Product Sales Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e4e9f0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin: 40px 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .dropdown {
+            width: 250px;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+        select:focus {
+            border: 2px solid #5c6bc0;
+        }
+        .plot {
+            width: 48%;
+            background-color: #f7f7f7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .plot img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 45%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card h3 {
+            font-size: 24px;
+            color: #444;
+        }
+        .card p {
+            font-size: 16px;
+            color: #888;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Analysis Dashboard</h1>
+     
+   
+
+    <form method="POST">
+        <h3>Select Customers</h3>
+        
+        <!-- Container for scrollable checkboxes -->
+        <div style="max-height: 300px; overflow-y: auto;">
+            <!-- Display checkboxes for customer selection -->
+            {% for customer in customer_list %}
+            <label>
+                <input type="checkbox" name="customer_name" value="{{ customer }}" 
+                {% if customer in selected_customers %} checked {% endif %}>
+                {{ customer }}
+            </label><br>
+            {% endfor %}
+        </div>
+        
+        <button type="submit">Generate Dashboard</button>
+    </form>
+    
+
+    <div class="container">
+        <div class="card">
+            <h3>Total Quantity Sold Per Customer</h3>
+            <img src="{{ plots['Q_S_P_R'] }}" alt="Total Quantity Sold Per Customer">
+        </div>
+<br>
+        <div class="card">
+            <h3> Sales Trend Over Time by Customer</h3>
+            <img src="{{ plots['Sales_Trend'] }}" alt="Sales Trend Over Time by Customer">
+        </div>
+<br>
+        <div class="card">
+            <h3>Total Sales by product Category</h3>
+            <img src="{{ plots['Distribution_of_product_category'] }}" alt="Category Analysis">
+        </div>
+<br>
+        <div class="card">
+            <h3>Total Sales per Customer </h3>
+            <img src="{{ plots['piechart'] }}" alt="Total Sales per Customer (Top 10)">
+        </div>
+
+
+        
+<br>
+        <div class="card">
+            <h3>Customers by Frequency of Purchases</h3>
+            <img src="{{ plots['frequency_of_purchase'] }}" alt=" Customers by Frequency of Purchases">
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

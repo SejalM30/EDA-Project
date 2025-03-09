@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}sales performance{% endblock %}
+{% block content %}
+<h2>Sales Performance Table</h2>
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Total Quantity Sold</th>
+        <th>Total Sales Amount</th>
+        <th>Profit/Loss</th>
+        <th>Stock Level</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row['Product ID'] }}</td>
+        <td>{{ row['Product Name'] }}</td>
+        <td>{{ row['Category'] }}</td>
+        <td>{{ row['Total_Quantity_Sold'] }}</td>
+        <td>{{ row['Total_Sales_Amount'] }}</td>
+        <td>{{ row['Profit_Loss'] }}</td>
+        <td>{{ row['Stock Level'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

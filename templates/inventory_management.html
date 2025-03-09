@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Product Inventory Management Table</h2>
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Stock Level</th>
+        <th>Reorder Level</th>
+        <th>Refill Quantity</th>
+        <th>Date of Last Refill</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row['Product ID'] }}</td>
+        <td>{{ row['Product Name'] }}</td>
+        <td>{{ row['Category'] }}</td>
+        <td>{{ row['Stock Level'] }}</td>
+        <td>{{ row['Reorder Level'] }}</td>
+        <td>{{ row['Refill Quantity'] }}</td>
+        <td>{{ row['Date of Last Refill'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

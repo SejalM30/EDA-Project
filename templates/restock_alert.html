@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Refill Alerts{% endblock %}
+
+{% block content %}
+<h1>Refill Alerts</h1>
+
+{% if data %}
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Stock Level</th>
+            <th>Reorder Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in data %}
+        <tr>
+            <td>{{ product['Product_Name'] }}</td>
+            <td>{{ product['Category'] }}</td>
+            <td>{{ product['Stock_Level'] }}</td>
+            <td>{{ product['Reorder_Level'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No products need refilling at the moment.</p>
+{% endif %}
+{% endblock %}

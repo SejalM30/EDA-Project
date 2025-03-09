@@ -1,0 +1,170 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <title>Sales and Inventory Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e4e9f0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin: 40px 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .dropdown {
+            width: 250px;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+        select:focus {
+            border: 2px solid #5c6bc0;
+        }
+        .plot {
+            width: 48%;
+            background-color: #f7f7f7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .plot img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 45%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card h3 {
+            font-size: 24px;
+            color: #444;
+        }
+        .card p {
+            font-size: 16px;
+            color: #888;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sales and Inventory Data Analysis</h1>
+            <p>Visual insights generated from the database</p>
+        </div>
+
+        <!-- Plot 1: Top 10 Customers by Sales -->
+
+            
+         
+        <div class="card">
+            <h3>Top 10 Customers by Sales</h3>
+            <img src="{{ plots['customer_sales_10'] }}" alt="Top 10 Customers by Sales">
+            <h3>Top 10 Customers by Sales</h3>
+            <p class="plot-description">This graph shows the top 10 customers ranked by total sales, highlighting which customers have contributed the most to the overall sales figures.</p>
+        </div>
+        
+        <br>
+        <!-- Plot 2: Least 10 Customers by Sales -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_11'] }}" alt="Least 10 Customers by Sales">
+            <h3>Least 10 Customers by Sales</h3>
+            <p class="plot-description">This graph displays the least 10 customers by total sales, providing insight into customers who contribute the least to overall revenue.</p>
+        </div>
+        <br>
+        <!-- Plot 3: Profit and Loss Analysis -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_12'] }}" alt="Profit and Loss by Product">
+            <h3>Profit and Loss by Product</h3>
+            <p class="plot-description">This bar chart shows profit and loss by product. Products generating a loss are marked in red, while those with profit are shown in green.</p>
+        </div>
+        <br>
+        <!-- Plot 4: Product-wise Sales Distribution -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_13'] }}" alt="Product-wise Sales Distribution">
+            <h3>Product-wise Sales Distribution</h3>
+            <p class="plot-description">This pie chart illustrates the distribution of total sales across different product categories, showing the proportion each category contributes to overall sales.</p>
+        </div>
+        <br>
+        <!-- Plot 5: Supplier Contribution Analysis -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_15'] }}" alt="Supplier Contribution Analysis">
+            <h3>Supplier Contribution Analysis</h3>
+            <p class="plot-description">This bar chart shows the number of products supplied by each supplier, giving insight into which suppliers contribute the most to the inventory.</p>
+        </div>
+        <br>
+        <!-- Plot 6: Customer Purchase Frequency -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_16'] }}" alt="Customer Purchase Frequency">
+            <h3>Top 10 Customers by Purchase Frequency</h3>
+            <p class="plot-description">This bar chart highlights the top 10 customers by purchase frequency, showcasing which customers make the most frequent transactions.</p>
+        </div>
+        <br>
+        <!-- Plot 7: Cumulative Sales Contribution -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_17'] }}" alt="Cumulative Sales Contribution">
+            <h3>Cumulative Sales Contribution</h3>
+            <p class="plot-description">This line chart shows the cumulative sales contribution of the top customers, emphasizing the percentage of total sales attributed to each customer.</p>
+        </div>
+<br>
+        <!-- Plot 8: Loss-Making Products -->
+        <div class="card">
+            <img src="{{ plots['customer_sales_18'] }}" alt="Loss-Making Products">
+            <h3>Loss-Making Products</h3>
+            <p class="plot-description">This bar chart identifies products that are generating losses, represented in red. It provides insights into which products might need a review for potential improvement.</p>
+        </div>
+
+        <!-- Optional Table of Results (for example, Top Customers or Profitable Products) -->
+        
+
+        <div class="footer">
+            <p>&copy; 2024 Sales Analysis Dashboard</p>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

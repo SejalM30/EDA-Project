@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}<h2>Supplier Performance Table</h2>
+<table>
+    <tr>
+        <th>Supplier ID</th>
+        <th>Supplier Name</th>
+        <th>Product Name</th>
+        <th>Lead Time</th>
+        <th>Last Refill Date</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row['Supplier ID'] }}</td>
+        <td>{{ row['Supplier Name'] }}</td>
+        <td>{{ row['Product Name'] }}</td>
+        <td>{{ row['Lead Time'] }}</td>
+        <td>{{ row['Date of Last Refill'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
