@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}<h2>Customer Insights Table</h2>
+<table>
+    <tr>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Total Sales Amount</th>
+        <th>Number of Purchases</th>
+        <th>Average Sales per Purchase</th>
+    </tr>
+    {% for row in data %}
+    <tr>
+        <td>{{ row['Customer ID'] }}</td>
+        <td>{{ row['Customer Name'] }}</td>
+        <td>{{ row['Total_Sales_Amount'] }}</td>
+        <td>{{ row['Number_of_Purchases'] }}</td>
+        <td>{{ row['Average_Sales_Per_Purchase'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

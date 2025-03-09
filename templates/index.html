@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="text-center">Sales Analysis Dashboard</h1>
+<p class="text-muted text-center">Visual insights into sales, inventory, and product data.</p>
+
+<h3 class="mt-4">Product Sales Analysis</h3>
+<img src="data:image/png;base64,{{ plot_url }}" alt="Sales Plot" class="img-fluid">
+<!-- Refill Product Form -->
+<div class="mt-5">
+    <h3>Search and Refills</h3>
+    <form method="POST" action="/get_product_details">
+        <div class="mb-3">
+            <label for="product_id" class="form-label">Product ID</label>
+            <input type="number" class="form-control" id="product_id" name="product_id" placeholder="Enter Product ID" required>
+        </div>
+        <button type="submit" class="btn btn-info">Fetch Product Details</button>
+    </form>
+</div>
+
+<!-- Product Details Section -->
+{% if product_details %}
+    <h3 class="mt-5">Product Details</h3>
+    <table class="table">
+        <tr>
+            <th>Product ID</th>
+            <td>{{ product_details['Product ID'] }}</td>
+        </tr>
+        <tr>
+            <th>Product Name</th>
+            <td>{{ product_details['Product Name'] }}</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{ product_details['Category'] }}</td>
+        </tr>
+        <tr>
+            <th>Stock Level</th>
+            <td>{{ product_details['Stock Level'] }}</td>
+        </tr>
+        <tr>
+            <th>Supplier Name</th>
+            <td>{{ product_details['Supplier Name'] }}</td>
+        </tr>
+        <tr>
+            <th>Reorder Level</th>
+            <td>{{ product_details['Reorder Level'] }}</td>
+        </tr>
+    </table>
+
+    <!-- Refill Form -->
+    <div class="mt-4">
+        <form method="POST" action="/refill">
+            <input type="hidden" name="product_id" value="{{ product_details['Product ID'] }}">
+            <div class="mb-3">
+                <label for="refill_amount" class="form-label">Refill Amount</label>
+                <input type="number" class="form-control" id="refill_amount" name="refill_amount" placeholder="Enter Refill Amount" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Refill Product</button>
+        </form>
+    </div>
+{% else %}
+    <p class="mt-4">Product not found! Please enter a valid Product ID.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <title>Product Sales Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e4e9f0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 36px;
+            margin: 40px 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .dropdown {
+            width: 250px;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+        select:focus {
+            border: 2px solid #5c6bc0;
+        }
+        .plot {
+            width: 48%;
+            background-color: #f7f7f7;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .plot img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 45%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card h3 {
+            font-size: 24px;
+            color: #444;
+        }
+        .card p {
+            font-size: 16px;
+            color: #888;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Sales & Inventory Dashboard</h1>
+     
+    <form method="POST" style="text-align: center;">
+        <label for="product_name" style="font-size: 18px; color: #444;">Select Product: </label>
+        <select name="product_name" id="product_name" class="dropdown" onchange="this.form.submit()">
+            {% for product in product_list %}
+                <option value="{{ product }}" {% if product == request.form.get('product_name') %}selected{% endif %}>
+                    {{ product }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div class="container">
+        <div class="card">
+            <h3>Distribution of Quantity Sold</h3>
+            <img src="{{ plots['quantity_sold_distribution'] }}" alt="Distribution of Quantity Sold">
+        </div>
+
+        <div class="card">
+            <h3>Total Sales by Store Location</h3>
+            <img src="{{ plots['sales_by_store'] }}" alt="Sales by Store Location">
+        </div>
+
+        <div class="card">
+            <h3>Total Sales by Product Category</h3>
+            <img src="{{ plots['category_analysis'] }}" alt="Category Analysis">
+        </div>
+
+        <div class="card">
+            <h3>Inventory Refill Analysis</h3>
+            <img src="{{ plots['inventory_refill'] }}" alt="Inventory Refill Analysis">
+        </div>
+
+        <div class="card">
+            <h3>Sales Trend Over Time</h3>
+            <img src="{{ plots['sales_trend'] }}" alt="Sales Trend">
+        </div>
+
+        <div class="card">
+            <h3>Products by Quantity Sold</h3>
+            <img src="{{ plots['top_products'] }}" alt="Top Products">
+        </div>
+
+        <div class="card">
+            <h3>Age Distribution of Customers</h3>
+            <img src="{{ plots['age'] }}" alt="Age Distribution of Customers">
+        </div>
+
+        <div class="card">
+            <h3>Gender Contribution in Sales</h3>
+            <img src="{{ plots['gender'] }}" alt="Gender Contribution in Sales">
+        </div>
+        
+        <div class="card">
+            <h3>Daily refill frequency and total sales</h3>
+            <img src="{{ plots['refillfre_sales'] }}" alt="Daily refill frequency and total sales">
+        </div>
+        <div class="card">
+            <h3>Identify optimal price points</h3>
+            <img src="{{ plots['heatmap'] }}" alt="dentify optimal price points">
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
